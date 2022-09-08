@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import ProductCard from './ProductCard';
+import ShoppingCartButton from './ShoppingCartButton';
+
 
 export default class SearchProducts extends Component {
   state = {
@@ -26,6 +28,7 @@ export default class SearchProducts extends Component {
 
     return (
       <div>
+        <header><ShoppingCartButton /></header>
         <input
           name="queryInput"
           data-testid="query-input"

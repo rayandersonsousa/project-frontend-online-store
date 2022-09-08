@@ -4,7 +4,7 @@ main-group-23-reqxx
 ## Commit Boas Práticas
 **Inicial** iniciando reqxx
 
-**Final** finalizado reqxx
+**Final** finalizando reqxx
 
 **Adicionar funcionalidades** feat: [descrição da funcionalidade]
 - Exemplo - reqxx-feat: adiciona botão de salvar o carrinho
