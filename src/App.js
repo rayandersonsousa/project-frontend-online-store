@@ -8,7 +8,6 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          {/* alterei a sintaxe do route para eu conseguir passar props para o SearchProducts */}
           <Route path="/">
             <SearchProducts />
           </Route>
