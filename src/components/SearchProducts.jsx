@@ -6,6 +6,7 @@ export default class SearchProducts extends Component {
     const { queryInput } = this.props;
     return (
       <div>
+        {/* adicionei a renderização condicional da mensagem termo vazio conforme a prop queryInput */}
         { queryInput === '' && (
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
