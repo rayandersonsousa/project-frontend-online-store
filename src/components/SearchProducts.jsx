@@ -3,7 +3,6 @@ import { getProductsFromCategoryAndQuery } from '../services/api';
 import ProductCard from './ProductCard';
 import ShoppingCartButton from './ShoppingCartButton';
 
-
 export default class SearchProducts extends Component {
   state = {
     queryInput: '',
