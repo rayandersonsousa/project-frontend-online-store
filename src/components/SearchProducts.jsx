@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ShoppingCartButton from './ShoppingCartButton';
 
 export default class SearchProducts extends Component {
   render() {
@@ -7,6 +8,7 @@ export default class SearchProducts extends Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+        <ShoppingCartButton />
       </div>
     );
   }
