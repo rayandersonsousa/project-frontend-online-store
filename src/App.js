@@ -1,10 +1,15 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import SearchProducts from './components/SearchProducts';
 
 function App() {
   return (
-    <BrowserRouter>APP</BrowserRouter>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" component={ SearchProducts } />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
