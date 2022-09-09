@@ -5,16 +5,31 @@ import SearchProducts from './components/SearchProducts';
 
 import ShoppingCart from './pages/ShoppingCart';
 import CategoriesBar from './components/CategoriesBar';
-import { getCategories } from './services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from './services/api';
 
 export default class App extends Component {
   state = {
     categories: [],
+    queryInput: '',
+    queryResults: [],
+    notFound: false,
   };
 
   componentDidMount() {
     this.getAllCategories();
   }
+
+  handleChange = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
+  };
+
+  handleClick = async () => {
+    const { queryInput } = this.state;
+    const data = await getProductsFromCategoryAndQuery('', queryInput);
+    this.setState({ queryResults: data.results }, () => {
+      this.setState({ notFound: data.results.length === 0 });
+    });
+  };
 
   getAllCategories = async () => {
     const categories = await getCategories();
@@ -24,7 +39,7 @@ export default class App extends Component {
   };
 
   render() {
-    const { categories } = this.state;
+    const { categories, queryInput, queryResults, notFound } = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -46,7 +61,13 @@ export default class App extends Component {
               </ul>
             </aside>
 
-            <SearchProducts />
+            <SearchProducts
+              queryInput={ queryInput }
+              queryResults={ queryResults }
+              notFound={ notFound }
+              handleChange={ this.handleChange }
+              handleClick={ this.handleClick }
+            />
           </Route>
         </Switch>
       </BrowserRouter>

@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import PropTypes from 'prop-types';
 import ProductCard from './ProductCard';
 import ShoppingCartButton from './ShoppingCartButton';
-
+//
 export default class SearchProducts extends Component {
-  state = {
-    queryInput: '',
-    queryResults: [],
-    notFound: false,
-  };
+  // state = {
+  //   queryInput: '',
+  //   queryResults: [],
+  //   notFound: false,
+  // };
 
-  handleChange = ({ target: { name, value } }) => {
-    this.setState({ [name]: value });
-  };
+  // handleChange = ({ target: { name, value } }) => {
+  //   this.setState({ [name]: value });
+  // };
 
-  handleClick = async () => {
-    const { queryInput } = this.state;
-    const data = await getProductsFromCategoryAndQuery('', queryInput);
-    this.setState({ queryResults: data.results }, () => {
-      this.setState({ notFound: data.results.length === 0 });
-    });
-  };
+  // handleClick = async () => {
+  //   const { queryInput } = this.state;
+  //   const data = await getProductsFromCategoryAndQuery('', queryInput);
+  //   this.setState({ queryResults: data.results }, () => {
+  //     this.setState({ notFound: data.results.length === 0 });
+  //   });
+  // };
 
   render() {
-    const { queryInput, queryResults, notFound } = this.state;
+    const { queryInput, queryResults, notFound, handleChange, handleClick } = this.props;
 
     return (
       <div>
@@ -34,12 +34,12 @@ export default class SearchProducts extends Component {
           id=""
           type="text"
           value={ queryInput }
-          onChange={ this.handleChange }
+          onChange={ handleChange }
         />
         <button
           data-testid="query-button"
           type="button"
-          onClick={ this.handleClick }
+          onClick={ handleClick }
         >
           Pesquisar
         </button>
@@ -65,3 +65,11 @@ export default class SearchProducts extends Component {
     );
   }
 }
+
+SearchProducts.propTypes = {
+  handleChange: PropTypes.func,
+  handleClick: PropTypes.func,
+  notFound: PropTypes.bool,
+  queryInput: PropTypes.string,
+  queryResults: PropTypes.array,
+}.isRequired;
