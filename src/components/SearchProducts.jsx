@@ -41,7 +41,7 @@ export default class SearchProducts extends Component {
           <Link
             to={ `/produto/${e.id}` }
             key={ e.id }
-             data-testid="product-detail-link"
+            data-testid="product-detail-link"
           >
             <ProductCard
               dataTestId="product"
