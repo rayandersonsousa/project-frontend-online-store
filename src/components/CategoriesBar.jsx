@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class CategoriesBar extends Component {
   // state = {
   //   categories: [],
   // };
 
-  componentDidMount() {
-    const { getAllCategories } = this.props;
-    getAllCategories();
-  }
+  // componentDidMount() {
+  //   const { getAllCategories } = this.props;
+  //   getAllCategories();
+  // }
 
   // getAllCategories = async () => {
   //   const categorieList = await getCategories();
@@ -18,28 +19,23 @@ export default class CategoriesBar extends Component {
   // };
 
   render() {
-    const { categories } = this.props;
+    const { name } = this.props;
 
     return (
-      <aside>
-        <p>Categorias:</p>
-        <ul>
-          {
-            categories.map(({ name }) => (
-              <li key={ name }>
-                <label htmlFor={ name } data-testid="category">
-                  <input
-                    value={ name }
-                    type="radio"
-                  />
-                  {' '}
-                  { name }
-                </label>
-              </li>
-            ))
-          }
-        </ul>
-      </aside>
+      <li>
+        <label htmlFor={ name } data-testid="category">
+          <input
+            value={ name }
+            type="radio"
+          />
+          {' '}
+          { name }
+        </label>
+      </li>
     );
   }
 }
+
+CategoriesBar.propTypes = {
+  name: PropTypes.string,
+}.isRequired;

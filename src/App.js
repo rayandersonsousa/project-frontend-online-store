@@ -12,6 +12,10 @@ export default class App extends Component {
     categories: [],
   };
 
+  componentDidMount() {
+    this.getAllCategories();
+  }
+
   getAllCategories = async () => {
     const categories = await getCategories();
     this.setState({
@@ -28,10 +32,20 @@ export default class App extends Component {
             <ShoppingCart />
           </Route>
           <Route path="/">
-            <CategoriesBar
-              getAllCategories={ this.getAllCategories }
-              categories={ categories }
-            />
+
+            <aside>
+              <p>Categorias:</p>
+              <ul>
+                { categories.map((e) => (
+                  <CategoriesBar
+                    key={ e.id }
+                    name={ e.name }
+                    getAllCategories={ this.getAllCategories }
+                  />
+                ))}
+              </ul>
+            </aside>
+
             <SearchProducts />
           </Route>
         </Switch>
