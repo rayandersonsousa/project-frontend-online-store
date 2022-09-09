@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import SearchProducts from './components/SearchProducts';
+import SearchProducts from './components/SearchProducts'; //
 
 import ShoppingCart from './pages/ShoppingCart';
 import CategoriesBar from './components/CategoriesBar';
@@ -10,6 +10,7 @@ import {
   getProductsFromCategoryAndQuery,
   getProductById,
 } from './services/api';
+import ProductDetails from './components/ProductDetails';
 
 export default class App extends Component {
   state = {
@@ -54,6 +55,10 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
+          <Route
+            path="/produto/:id"
+            component={ ProductDetails }
+          />
           <Route path="/carrinho">
             <ShoppingCart />
           </Route>
