@@ -1,27 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import ShoppingCartButton from './ShoppingCartButton';
-//
+
 export default class SearchProducts extends Component {
-  // state = {
-  //   queryInput: '',
-  //   queryResults: [],
-  //   notFound: false,
-  // };
-
-  // handleChange = ({ target: { name, value } }) => {
-  //   this.setState({ [name]: value });
-  // };
-
-  // handleClick = async () => {
-  //   const { queryInput } = this.state;
-  //   const data = await getProductsFromCategoryAndQuery('', queryInput);
-  //   this.setState({ queryResults: data.results }, () => {
-  //     this.setState({ notFound: data.results.length === 0 });
-  //   });
-  // };
-
   render() {
     const { queryInput, queryResults, notFound, handleChange,
       handleClick, handleCartButton } = this.props;
@@ -55,15 +38,20 @@ export default class SearchProducts extends Component {
             Nenhum produto foi encontrado
           </p>
         ) : queryResults.map((e) => (
-          <ProductCard
+          <Link
+            to={ `/produto/${e.id}` }
             key={ e.id }
-            dataTestId="product"
-            title={ e.title }
-            name={ e.id }
-            price={ e.price }
-            thumbnail={ e.thumbnail }
-            handleCartButton={ handleCartButton }
-          />))}
+             data-testid="product-detail-link"
+          >
+            <ProductCard
+              dataTestId="product"
+              title={ e.title }
+              price={ e.price }
+              thumbnail={ e.thumbnail }
+              handleCartButton={ handleCartButton }
+              name={ e.id }
+            />
+          </Link>))}
       </div>
     );
   }
