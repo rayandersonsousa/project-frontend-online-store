@@ -1,45 +1,41 @@
 import React, { Component } from 'react';
-import { getCategories } from '../services/api';
+import PropTypes from 'prop-types';
 
 export default class CategoriesBar extends Component {
-  state = {
-    categories: [],
-  };
+  // state = {
+  //   categories: [],
+  // };
 
-  componentDidMount() {
-    this.getAllCategories();
-  }
+  // componentDidMount() {
+  //   const { getAllCategories } = this.props;
+  //   getAllCategories();
+  // }
 
-  getAllCategories = async () => {
-    const categorieList = await getCategories();
-    this.setState({
-      categories: categorieList,
-    });
-  };
+  // getAllCategories = async () => {
+  //   const categorieList = await getCategories();
+  //   this.setState({
+  //     categories: categorieList,
+  //   });
+  // };
 
   render() {
-    const { categories } = this.state;
+    const { name } = this.props;
 
     return (
-      <aside>
-        <p>Categorias:</p>
-        <ul>
-          {
-            categories.map((categorie) => (
-              <li key={ categorie.name }>
-                <label htmlFor={ categorie.name } data-testid="category">
-                  <input
-                    value={ categorie.name }
-                    type="radio"
-                  />
-                  {' '}
-                  {categorie.name}
-                </label>
-              </li>
-            ))
-          }
-        </ul>
-      </aside>
+      <li>
+        <label htmlFor={ name } data-testid="category">
+          <input
+            value={ name }
+            type="radio"
+          />
+          {' '}
+          { name }
+        </label>
+      </li>
     );
   }
 }
+
+CategoriesBar.propTypes = {
+  name: PropTypes.string,
+}.isRequired;
