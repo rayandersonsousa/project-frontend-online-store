@@ -12,7 +12,9 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/carrinho" component={ ShoppingCart } />
+          <Route path="/carrinho">
+            <ShoppingCart />
+          </Route>
           <Route path="/">
             <CategoriesBar />
             <SearchProducts />
