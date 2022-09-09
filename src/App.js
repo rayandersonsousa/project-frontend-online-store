@@ -10,6 +10,7 @@ import {
   getProductsFromCategoryAndQuery,
   getProductById,
 } from './services/api';
+import ProductDetails from './components/ProductDetails';
 
 export default class App extends Component {
   state = {
@@ -54,6 +55,10 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
+          <Route
+            path="/produto/:id"
+            component={ ProductDetails }
+          />
           <Route path="/carrinho">
             <ShoppingCart />
           </Route>
