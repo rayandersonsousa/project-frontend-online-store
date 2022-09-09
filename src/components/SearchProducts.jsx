@@ -6,7 +6,8 @@ import ShoppingCartButton from './ShoppingCartButton';
 
 export default class SearchProducts extends Component {
   render() {
-    const { queryInput, queryResults, notFound, handleChange, handleClick } = this.props;
+    const { queryInput, queryResults, notFound, handleChange,
+      handleClick, handleCartButton } = this.props;
 
     return (
       <div>
@@ -37,18 +38,28 @@ export default class SearchProducts extends Component {
             Nenhum produto foi encontrado
           </p>
         ) : queryResults.map((e) => (
-          <Link
-            to={ `/produto/${e.id}` }
-            key={ e.id }
-            data-testid="product-detail-link"
-          >
-            <ProductCard
-              dataTestId="product"
-              title={ e.title }
-              price={ e.price }
-              thumbnail={ e.thumbnail }
-            />
-          </Link>))}
+          <div key={ e.id }>
+            <Link
+              to={ `/produto/${e.id}` }
+              data-testid="product-detail-link"
+            >
+              <ProductCard
+                dataTestId="product"
+                title={ e.title }
+                price={ e.price }
+                thumbnail={ e.thumbnail }
+                name={ e.id }
+              />
+            </Link>
+            <button
+              type="button"
+              data-testid="product-add-to-cart"
+              onClick={ () => handleCartButton(e.id) }
+            >
+              Adicionar ao carrinho
+            </button>
+          </div>
+        ))}
       </div>
     );
   }
@@ -60,4 +71,5 @@ SearchProducts.propTypes = {
   notFound: PropTypes.bool,
   queryInput: PropTypes.string,
   queryResults: PropTypes.array,
+  handleCartButton: PropTypes.func,
 }.isRequired;

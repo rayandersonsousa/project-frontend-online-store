@@ -18,6 +18,7 @@ export default class App extends Component {
     queryInput: '',
     queryResults: [],
     notFound: false,
+    cartProducts: [],
   };
 
   componentDidMount() {
@@ -50,8 +51,20 @@ export default class App extends Component {
     });
   };
 
+  handleCartButton = (id) => {
+    const { queryResults, cartProducts } = this.state;
+    const selectProduct = queryResults.find((e) => e.id === id);
+    this.setState((prevState) => {
+      prevState.cartProducts.push(selectProduct);
+    }, () => this.saveLocalStorage(cartProducts));
+  };
+
+  saveLocalStorage = (list) => {
+    localStorage.setItem('cartItems', JSON.stringify(list));
+  };
+
   render() {
-    const { categories, queryInput, queryResults, notFound } = this.state;
+    const { categories, queryInput, queryResults, notFound, cartProducts } = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -60,7 +73,9 @@ export default class App extends Component {
             component={ ProductDetails }
           />
           <Route path="/carrinho">
-            <ShoppingCart />
+            <ShoppingCart
+              cartProducts={ cartProducts }
+            />
           </Route>
           <Route path="/">
 
@@ -85,6 +100,7 @@ export default class App extends Component {
               notFound={ notFound }
               handleChange={ this.handleChange }
               handleClick={ this.handleClick }
+              handleCartButton={ this.handleCartButton }
             />
           </Route>
         </Switch>
