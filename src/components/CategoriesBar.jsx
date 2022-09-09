@@ -27,6 +27,7 @@ export default class CategoriesBar extends Component {
           <input
             value={ name }
             type="radio"
+            name="categories"
           />
           {' '}
           { name }
