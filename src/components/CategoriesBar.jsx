@@ -19,14 +19,17 @@ export default class CategoriesBar extends Component {
   // };
 
   render() {
-    const { name } = this.props;
+    const { name, handleRadioClick, id } = this.props;
 
     return (
       <li>
-        <label htmlFor={ name } data-testid="category">
+        <label htmlFor={ id } data-testid="category">
           <input
             value={ name }
             type="radio"
+            name="categories"
+            id={ id }
+            onClick={ handleRadioClick }
           />
           {' '}
           { name }

@@ -5,7 +5,11 @@ import SearchProducts from './components/SearchProducts';
 
 import ShoppingCart from './pages/ShoppingCart';
 import CategoriesBar from './components/CategoriesBar';
-import { getCategories, getProductsFromCategoryAndQuery } from './services/api';
+import {
+  getCategories,
+  getProductsFromCategoryAndQuery,
+  getProductById,
+} from './services/api';
 
 export default class App extends Component {
   state = {
@@ -29,6 +33,13 @@ export default class App extends Component {
     this.setState({ queryResults: data.results }, () => {
       this.setState({ notFound: data.results.length === 0 });
     });
+  };
+
+  handleRadioClick = async ({ target: { id } }) => {
+    console.log(id);
+    const data = await getProductById(id, '');
+    console.log(data.results);
+    this.setState({ queryResults: data.results });
   };
 
   getAllCategories = async () => {
@@ -55,7 +66,9 @@ export default class App extends Component {
                   <CategoriesBar
                     key={ e.id }
                     name={ e.name }
+                    id={ e.id }
                     getAllCategories={ this.getAllCategories }
+                    handleRadioClick={ this.handleRadioClick }
                   />
                 ))}
               </ul>
