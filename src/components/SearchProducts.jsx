@@ -38,20 +38,28 @@ export default class SearchProducts extends Component {
             Nenhum produto foi encontrado
           </p>
         ) : queryResults.map((e) => (
-          <Link
-            to={ `/produto/${e.id}` }
-            key={ e.id }
-            data-testid="product-detail-link"
-          >
-            <ProductCard
-              dataTestId="product"
-              title={ e.title }
-              price={ e.price }
-              thumbnail={ e.thumbnail }
-              handleCartButton={ handleCartButton }
-              name={ e.id }
-            />
-          </Link>))}
+          <div key={ e.id }>
+            <Link
+              to={ `/produto/${e.id}` }
+              data-testid="product-detail-link"
+            >
+              <ProductCard
+                dataTestId="product"
+                title={ e.title }
+                price={ e.price }
+                thumbnail={ e.thumbnail }
+                name={ e.id }
+              />
+            </Link>
+            <button
+              type="button"
+              data-testid="product-add-to-cart"
+              onClick={ () => handleCartButton(e.id) }
+            >
+              Adicionar ao carrinho
+            </button>
+          </div>
+        ))}
       </div>
     );
   }

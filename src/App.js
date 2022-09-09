@@ -51,9 +51,9 @@ export default class App extends Component {
     });
   };
 
-  handleCartButton = ({ target }) => {
+  handleCartButton = (id) => {
     const { queryResults, cartProducts } = this.state;
-    const selectProduct = queryResults.find((e) => e.id === target.parentNode.id);
+    const selectProduct = queryResults.find((e) => e.id === id);
     this.setState((prevState) => {
       prevState.cartProducts.push(selectProduct);
     }, () => this.saveLocalStorage(cartProducts));
