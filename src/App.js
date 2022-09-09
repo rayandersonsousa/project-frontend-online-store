@@ -31,6 +31,10 @@ export default class App extends Component {
     });
   };
 
+  handleRadioClick = async () => {
+    console.log('oi');
+  };
+
   getAllCategories = async () => {
     const categories = await getCategories();
     this.setState({
@@ -56,6 +60,7 @@ export default class App extends Component {
                     key={ e.id }
                     name={ e.name }
                     getAllCategories={ this.getAllCategories }
+                    handleRadioClick={ this.handleRadioClick }
                   />
                 ))}
               </ul>

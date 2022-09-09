@@ -19,7 +19,7 @@ export default class CategoriesBar extends Component {
   // };
 
   render() {
-    const { name } = this.props;
+    const { name, handleRadioClick } = this.props;
 
     return (
       <li>
@@ -28,6 +28,8 @@ export default class CategoriesBar extends Component {
             value={ name }
             type="radio"
             name="categories"
+            id={ name }
+            onClick={ handleRadioClick }
           />
           {' '}
           { name }
