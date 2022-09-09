@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { getProductDetailsById } from '../services/api';
+import ShoppingCartButton from './ShoppingCartButton';
 
 export default class ProductDetails extends Component {
   state = {
@@ -16,9 +18,25 @@ export default class ProductDetails extends Component {
 
   render() {
     const { title, thumbnail, price } = this.state;
-    const { match: { params: { id } } } = this.props;
     return (
-      <div>{ id }</div>
+      <div>
+        <span data-testid="product-detail-name">
+          { title }
+        </span>
+        { ' - R$ ' }
+        <span data-testid="product-detail-price">
+          { price }
+        </span>
+        <br />
+        <img src={ thumbnail } alt={ title } data-testid="product-detail-image" />
+        <ShoppingCartButton />
+      </div>
     );
   }
 }
+
+ProductDetails.propTypes = {
+  match: PropTypes.object,
+  params: PropTypes.object,
+  id: PropTypes.string,
+}.isRequeired;
