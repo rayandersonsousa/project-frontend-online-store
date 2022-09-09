@@ -23,7 +23,8 @@ export default class SearchProducts extends Component {
   // };
 
   render() {
-    const { queryInput, queryResults, notFound, handleChange, handleClick } = this.props;
+    const { queryInput, queryResults, notFound, handleChange,
+      handleClick, handleCartButton } = this.props;
 
     return (
       <div>
@@ -58,8 +59,10 @@ export default class SearchProducts extends Component {
             key={ e.id }
             dataTestId="product"
             title={ e.title }
+            name={ e.id }
             price={ e.price }
             thumbnail={ e.thumbnail }
+            handleCartButton={ handleCartButton }
           />))}
       </div>
     );
@@ -72,4 +75,5 @@ SearchProducts.propTypes = {
   notFound: PropTypes.bool,
   queryInput: PropTypes.string,
   queryResults: PropTypes.array,
+  handleCartButton: PropTypes.func,
 }.isRequired;
