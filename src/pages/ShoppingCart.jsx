@@ -19,7 +19,6 @@ export default class ShoppingCart extends Component {
               title={ e.title }
               price={ e.price }
               thumbnail={ e.thumbnail }
-              amount={ 1 }
             />))}
       </section>
     );
