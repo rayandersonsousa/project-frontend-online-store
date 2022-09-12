@@ -18,6 +18,7 @@ export default class ProductDetails extends Component {
 
   render() {
     const { title, thumbnail, price } = this.state;
+    const { match: { params: { id } }, handleCartButton } = this.props;
     return (
       <div>
         <span data-testid="product-detail-name">
@@ -29,6 +30,13 @@ export default class ProductDetails extends Component {
         </span>
         <br />
         <img src={ thumbnail } alt={ title } data-testid="product-detail-image" />
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => handleCartButton(id) }
+        >
+          Adicionar ao carrinho
+        </button>
         <ShoppingCartButton />
       </div>
     );
