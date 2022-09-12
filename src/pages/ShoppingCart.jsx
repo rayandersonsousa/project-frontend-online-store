@@ -4,7 +4,7 @@ import CartProducsCard from '../components/CartProducsCard';
 
 export default class ShoppingCart extends Component {
   render() {
-    const { cartProducts } = this.props;
+    const { cartProducts, removeItem } = this.props;
     return (
       <section>
         { cartProducts.length === 0
@@ -16,9 +16,11 @@ export default class ShoppingCart extends Component {
           : cartProducts.map((e) => (
             <CartProducsCard
               key={ e.id }
+              id={ e.id }
               title={ e.title }
               price={ e.price }
               thumbnail={ e.thumbnail }
+              removeItem={ removeItem }
             />))}
       </section>
     );

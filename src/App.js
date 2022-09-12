@@ -25,6 +25,13 @@ export default class App extends Component {
     this.getAllCategories();
   }
 
+  removeItem = (id) => {
+    const { cartProducts } = this.state;
+    const list = cartProducts.filter((e) => e.id !== id);
+    localStorage.setItem('cartItems', JSON.stringify(list));
+    this.setState({ cartProducts: list });
+  };
+
   handleChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
   };
@@ -77,6 +84,7 @@ export default class App extends Component {
           <Route path="/carrinho">
             <ShoppingCart
               cartProducts={ cartProducts }
+              removeItem={ this.removeItem }
             />
           </Route>
           <Route path="/">
