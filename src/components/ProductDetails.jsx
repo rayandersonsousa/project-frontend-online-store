@@ -2,6 +2,7 @@ import React, { Component } from 'react'; //
 import PropTypes from 'prop-types';
 import { getProductDetailsById } from '../services/api';
 import ShoppingCartButton from './ShoppingCartButton';
+import ProductDetailsForm from './ProductDetailsForm';
 
 export default class ProductDetails extends Component {
   state = {
@@ -30,6 +31,7 @@ export default class ProductDetails extends Component {
         <br />
         <img src={ thumbnail } alt={ title } data-testid="product-detail-image" />
         <ShoppingCartButton />
+        <ProductDetailsForm />
       </div>
     );
   }
