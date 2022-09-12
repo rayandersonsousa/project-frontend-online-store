@@ -38,9 +38,7 @@ export default class App extends Component {
   };
 
   handleRadioClick = async ({ target: { id } }) => {
-    console.log(id);
     const data = await getProductById(id, '');
-    console.log(data.results);
     this.setState({ queryResults: data.results });
   };
 
@@ -70,7 +68,11 @@ export default class App extends Component {
         <Switch>
           <Route
             path="/produto/:id"
-            component={ ProductDetails }
+            render={ (props) => (
+              <ProductDetails
+                { ...props }
+                handleCartButton={ this.handleCartButton }
+              />) }
           />
           <Route path="/carrinho">
             <ShoppingCart
