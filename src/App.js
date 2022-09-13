@@ -19,17 +19,23 @@ export default class App extends Component {
     queryResults: [],
     notFound: false,
     cartProducts: [],
+    storage: [],
   };
 
   componentDidMount() {
     this.getAllCategories();
+    const save = this.getSavedCartItems();
+    const saved = JSON.parse(save);
+    this.setState({
+      storage: saved,
+    });
   }
 
   removeItem = (id) => {
-    const { cartProducts } = this.state;
-    const list = cartProducts.filter((e) => e.id !== id);
+    const { storage } = this.state;
+    const list = storage.filter((e) => e.id !== id);
     localStorage.setItem('cartItems', JSON.stringify(list));
-    this.setState({ cartProducts: list });
+    this.setState({ storage: list });
   };
 
   handleChange = ({ target: { name, value } }) => {
@@ -68,8 +74,11 @@ export default class App extends Component {
     localStorage.setItem('cartItems', JSON.stringify(list));
   };
 
+  getSavedCartItems = () => localStorage.getItem('cartItems');
+
   render() {
-    const { categories, queryInput, queryResults, notFound, cartProducts } = this.state;
+    const { categories, queryInput, queryResults,
+      notFound, storage } = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -83,7 +92,8 @@ export default class App extends Component {
           />
           <Route path="/carrinho">
             <ShoppingCart
-              cartProducts={ cartProducts }
+              // cartProducts={ cartProducts }
+              storage={ storage }
               removeItem={ this.removeItem }
             />
           </Route>

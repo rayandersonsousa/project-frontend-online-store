@@ -4,16 +4,16 @@ import CartProducsCard from '../components/CartProducsCard';
 
 export default class ShoppingCart extends Component {
   render() {
-    const { cartProducts, removeItem } = this.props;
+    const { removeItem, storage } = this.props;
     return (
       <section>
-        { cartProducts.length === 0
+        { storage.length === 0
           ? (
             <h1 data-testid="shopping-cart-empty-message">
               Seu carrinho está vazio
               {' '}
             </h1>)
-          : cartProducts.map((e) => (
+          : storage.map((e) => (
             <CartProducsCard
               key={ e.id }
               id={ e.id }
@@ -28,5 +28,5 @@ export default class ShoppingCart extends Component {
 }
 
 ShoppingCart.propTypes = {
-  cartProducts: PropTypes.string,
+  storage: PropTypes.array,
 }.isREquired;

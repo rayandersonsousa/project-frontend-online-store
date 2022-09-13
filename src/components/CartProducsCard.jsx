@@ -23,16 +23,16 @@ export default class CartProducsCard extends Component {
     const { title, price, thumbnail, removeItem, id } = this.props;
     return (
       <div>
+        <h5 data-testid="shopping-cart-product-name">{ title }</h5>
+        <p>{ price }</p>
+        <img src={ thumbnail } alt={ title } />
         <button
-          type="submit"
+          type="button"
           data-testid="remove-product"
           onClick={ () => removeItem(id) }
         >
           x
         </button>
-        <h5 data-testid="shopping-cart-product-name">{ title }</h5>
-        <p>{ price }</p>
-        <img src={ thumbnail } alt={ title } />
         <div>
           <button
             type="submit"
