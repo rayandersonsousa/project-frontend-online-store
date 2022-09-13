@@ -25,7 +25,8 @@ export default class App extends Component {
   componentDidMount() {
     this.getAllCategories();
     const save = this.getSavedCartItems();
-    const saved = JSON.parse(save);
+    const saved = JSON.parse(save) || [];
+    console.log(saved);
     this.setState({
       storage: saved,
     });
