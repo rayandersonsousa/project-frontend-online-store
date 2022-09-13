@@ -6,21 +6,27 @@ export default class ProductDetailsEvaluationCard extends Component {
     const { email, text, rating } = this.props;
     return (
       <li>
-        <h3 data-testid="review-card-email">
-          Email:
+        <label htmlFor="review-card-email">
+          E-mail:
           {' '}
-          { email}
-        </h3>
-        <p data-testid="review-card-rating">
+          <h3 data-testid="review-card-email" id="review-card-email">
+            { email }
+          </h3>
+        </label>
+        <label htmlFor="review-card-rating">
           Nota:
           {' '}
-          {rating}
-        </p>
-        <p data-testid="review-card-evaluation">
+          <p data-testid="review-card-rating" id="review-card-rating">
+            {rating}
+          </p>
+        </label>
+        <label htmlFor="review-card-evaluation">
           Descrição:
           {' '}
-          {text}
-        </p>
+          <p data-testid="review-card-evaluation">
+            {text}
+          </p>
+        </label>
       </li>
     );
   }
