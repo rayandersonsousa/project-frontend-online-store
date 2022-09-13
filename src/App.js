@@ -11,6 +11,7 @@ import {
   getProductById,
 } from './services/api';
 import ProductDetails from './components/ProductDetails';
+import CheckoutProducts from './pages/CheckoutProducts';
 
 export default class App extends Component {
   state = {
@@ -88,6 +89,7 @@ export default class App extends Component {
               getSavedCartItems={ this.getSavedCartItems }
             />
           </Route>
+          <Route path="/finalizar-compra"><CheckoutProducts /></Route>
           <Route path="/">
 
             <aside>
