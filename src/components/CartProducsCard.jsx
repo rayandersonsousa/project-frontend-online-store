@@ -12,10 +12,12 @@ export default class CartProducsCard extends Component {
   }
 
   itemsIncrease = () => {
-    const { id } = this.props;
+    const { id, quantity } = this.props;
     const { amount } = this.state;
-    this.setState({ amount: amount + 1 });
-    localStorage.setItem(id, amount + 1);
+    if (amount < quantity) {
+      this.setState({ amount: amount + 1 });
+      localStorage.setItem(id, amount + 1);
+    }
   };
 
   itemsDecrease = () => {
