@@ -6,15 +6,24 @@ export default class CartProducsCard extends Component {
     amount: 1,
   };
 
+  componentDidMount() {
+    const { id } = this.props;
+    this.setState({ amount: Number(localStorage.getItem(id)) || 1 });
+  }
+
   itemsIncrease = () => {
+    const { id } = this.props;
     const { amount } = this.state;
     this.setState({ amount: amount + 1 });
+    localStorage.setItem(id, amount + 1);
   };
 
   itemsDecrease = () => {
+    const { id } = this.props;
     const { amount } = this.state;
     if (amount >= 2) {
       this.setState({ amount: amount - 1 });
+      localStorage.setItem(id, amount - 1);
     }
   };
 
