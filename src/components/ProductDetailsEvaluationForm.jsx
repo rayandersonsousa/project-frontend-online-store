@@ -8,7 +8,7 @@ export default class ProductDetailsEvaluationForm extends Component {
       handleChange,
       handleClick,
       evaluationText,
-      isButtonDisabled,
+      isInvalidFields,
     } = this.props;
 
     return (
@@ -99,12 +99,11 @@ export default class ProductDetailsEvaluationForm extends Component {
           <button
             type="button"
             data-testid="submit-review-btn"
-            disabled={ isButtonDisabled }
             onClick={ handleClick }
           >
             Enviar
           </button>
-          { isButtonDisabled && <p data-testid="error-msg">Campos inválidos</p>}
+          { isInvalidFields && <p data-testid="error-msg">Campos inválidos</p>}
         </form>
       </div>
     );
