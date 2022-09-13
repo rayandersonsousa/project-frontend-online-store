@@ -37,6 +37,7 @@ export default class ShoppingCart extends Component {
             <CartProducsCard
               key={ e.id }
               id={ e.id }
+              quantity={ e.available_quantity }
               title={ e.title }
               price={ e.price }
               thumbnail={ e.thumbnail }
