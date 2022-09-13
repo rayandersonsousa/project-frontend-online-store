@@ -23,6 +23,11 @@ export default class App extends Component {
 
   componentDidMount() {
     this.getAllCategories();
+    // const save = this.getSavedCartItems();
+    // const saved = JSON.parse(save) || [];
+    // this.setState({
+    //   storage: saved,
+    // });
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -61,8 +66,11 @@ export default class App extends Component {
     localStorage.setItem('cartItems', JSON.stringify(list));
   };
 
+  getSavedCartItems = () => localStorage.getItem('cartItems');
+
   render() {
-    const { categories, queryInput, queryResults, notFound, cartProducts } = this.state;
+    const { categories, queryInput, queryResults,
+      notFound } = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -76,7 +84,8 @@ export default class App extends Component {
           />
           <Route path="/carrinho">
             <ShoppingCart
-              cartProducts={ cartProducts }
+              // cartProducts={ cartProducts }
+              getSavedCartItems={ this.getSavedCartItems }
             />
           </Route>
           <Route path="/">

@@ -3,23 +3,44 @@ import PropTypes from 'prop-types';
 import CartProducsCard from '../components/CartProducsCard';
 
 export default class ShoppingCart extends Component {
+  state = {
+    storage: [],
+  };
+
+  componentDidMount() {
+    const { getSavedCartItems } = this.props;
+    const save = getSavedCartItems();
+    const saved = JSON.parse(save) || [];
+    this.setState({
+      storage: saved,
+    });
+  }
+
+  removeItem = (id) => {
+    const { storage } = this.state;
+    const list = storage.filter((e) => e.id !== id);
+    localStorage.setItem('cartItems', JSON.stringify(list));
+    this.setState({ storage: list });
+  };
+
   render() {
-    const { cartProducts } = this.props;
+    const { storage } = this.state;
     return (
       <section>
-        { cartProducts.length === 0
+        { storage.length === 0
           ? (
             <h1 data-testid="shopping-cart-empty-message">
               Seu carrinho está vazio
               {' '}
             </h1>)
-          : cartProducts.map((e) => (
+          : storage.map((e) => (
             <CartProducsCard
               key={ e.id }
+              id={ e.id }
               title={ e.title }
               price={ e.price }
               thumbnail={ e.thumbnail }
-              amount={ 1 }
+              removeItem={ this.removeItem }
             />))}
       </section>
     );
@@ -27,5 +48,5 @@ export default class ShoppingCart extends Component {
 }
 
 ShoppingCart.propTypes = {
-  cartProducts: PropTypes.string,
+  storage: PropTypes.array,
 }.isREquired;
