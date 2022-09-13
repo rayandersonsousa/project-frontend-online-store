@@ -85,6 +85,7 @@ export default class ProductDetails extends Component {
       isInvalidFields,
       evaluationList,
     } = this.state;
+
     const { match: { params: { id } }, handleCartButton } = this.props;
     return (
       <div>
