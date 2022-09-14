@@ -49,6 +49,7 @@ export default class SearchProducts extends Component {
                 price={ e.price }
                 thumbnail={ e.thumbnail }
                 name={ e.id }
+                shipping={ e.shipping }
               />
             </Link>
             <button
