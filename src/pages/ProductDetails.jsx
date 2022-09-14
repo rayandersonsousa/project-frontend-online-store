@@ -8,6 +8,7 @@ export default class ProductDetails extends Component {
     title: '',
     thumbnail: '',
     price: '',
+
   };
 
   async componentDidMount() {
