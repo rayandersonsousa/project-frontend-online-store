@@ -10,7 +10,7 @@ import {
   getProductsFromCategoryAndQuery,
   getProductById,
 } from './services/api';
-import ProductDetails from './components/ProductDetails';
+import ProductDetails from './pages/ProductDetails';
 import CheckoutProducts from './pages/CheckoutProducts';
 
 export default class App extends Component {

@@ -12,6 +12,7 @@ export default class CheckoutForm extends Component {
       phone,
       cep,
       address,
+      invalidFields,
     } = this.props;
     return (
       <form>
@@ -142,6 +143,7 @@ export default class CheckoutForm extends Component {
         >
           Finalizar Compra
         </button>
+        {invalidFields && <p data-testid="error-msg">Campos inválidos</p>}
       </form>
     );
   }

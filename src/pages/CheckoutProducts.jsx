@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import CheckoutForm from '../components/CheckoutForm';
 import ProductCheckoutDetails from '../components/ProductCheckoutDetails';
 
@@ -13,6 +14,8 @@ export default class CheckoutProducts extends Component {
     address: '',
     payment: '',
     validation: false,
+    invalidFields: false,
+    isRedirect: false,
   };
 
   componentDidMount() {
@@ -36,9 +39,17 @@ export default class CheckoutProducts extends Component {
   };
 
   handleClick = () => {
-    const validation = this.handleValidation();
-    console.log(validation);
-    this.setState({ validation });
+    const newValidation = this.handleValidation();
+    console.log(newValidation);
+    this.setState({ validation: newValidation }, () => {
+      const { validation } = this.state;
+      if (validation) {
+        localStorage.setItem('cartItems', JSON.stringify([]));
+        this.setState({ isRedirect: true });
+      } else {
+        this.setState({ invalidFields: true });
+      }
+    });
   };
 
   render() {
@@ -49,8 +60,10 @@ export default class CheckoutProducts extends Component {
       phone,
       cep,
       address,
-      validation,
+      invalidFields,
+      isRedirect,
     } = this.state;
+    if (isRedirect) { return <Redirect to="/" />; }
     return (
       <div>
         <h1>Produtos do Carrinho de Compras</h1>
@@ -70,6 +83,7 @@ export default class CheckoutProducts extends Component {
           phone={ phone }
           cep={ cep }
           address={ address }
+          invalidFields={ invalidFields }
           handleChange={ this.handleChange }
           handleClick={ this.handleClick }
         />
