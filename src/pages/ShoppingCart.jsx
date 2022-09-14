@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import CartProducsCard from '../components/CartProducsCard';
 
 export default class ShoppingCart extends Component {
@@ -27,28 +26,24 @@ export default class ShoppingCart extends Component {
   render() {
     const { storage } = this.state;
     return (
-      <>
-        <section>
-          { storage.length === 0
-            ? (
-              <h1 data-testid="shopping-cart-empty-message">
-                Seu carrinho está vazio
-                {' '}
-              </h1>)
-            : storage.map((e) => (
-              <CartProducsCard
-                key={ e.id }
-                id={ e.id }
-                title={ e.title }
-                price={ e.price }
-                thumbnail={ e.thumbnail }
-                removeItem={ this.removeItem }
-              />))}
-        </section>
-        <Link to="/finalizar-compra">
-          <button type="button" data-testid="checkout-products">Finalizar Compra</button>
-        </Link>
-      </>
+      <section>
+        { storage.length === 0
+          ? (
+            <h1 data-testid="shopping-cart-empty-message">
+              Seu carrinho está vazio
+              {' '}
+            </h1>)
+          : storage.map((e) => (
+            <CartProducsCard
+              key={ e.id }
+              id={ e.id }
+              quantity={ e.available_quantity }
+              title={ e.title }
+              price={ e.price }
+              thumbnail={ e.thumbnail }
+              removeItem={ this.removeItem }
+            />))}
+      </section>
     );
   }
 }
