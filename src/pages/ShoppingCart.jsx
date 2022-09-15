@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CartProducsCard from '../components/CartProducsCard';
+import { Link } from 'react-router-dom';
 
 export default class ShoppingCart extends Component {
   state = {
@@ -43,6 +44,9 @@ export default class ShoppingCart extends Component {
               thumbnail={ e.thumbnail }
               removeItem={ this.removeItem }
             />))}
+        <Link to="/finalizar-compra">
+          <button type="button" data-testid="checkout-products">Finalizar Compra</button>
+        </Link>
       </section>
     );
   }
