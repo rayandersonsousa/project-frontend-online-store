@@ -2,7 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class ProductCard extends Component {
+  state = {
+    frete: [],
+  };
+
+  componentDidMount() {
+    const { shipping } = this.props;
+    const { frete } = this.state;
+    const hasShipping = (Object.values(shipping)[0]);
+    this.setState({ frete: hasShipping });
+    console.log(frete);
+  }
+
   render() {
+    const { frete } = this.state;
     const { title, price, thumbnail, dataTestId, name } = this.props;
     return (
       <div
@@ -19,6 +32,10 @@ export default class ProductCard extends Component {
         >
           Adicionar ao carrinho
         </button> */}
+        { frete === true
+          ? (
+            <p data-testid="free-shipping">Frete Grátis</p>
+          ) : <p>Não tem frete grátis T-T</p>}
       </div>
     );
   }
@@ -30,4 +47,5 @@ ProductCard.propTypes = {
   thumbnail: PropTypes.string,
   handleCartButton: PropTypes.func,
   name: PropTypes.string,
+  shipping: PropTypes.object,
 }.isRequired;
