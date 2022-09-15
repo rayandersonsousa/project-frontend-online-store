@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CartProducsCard from '../components/CartProducsCard';
 import { Link } from 'react-router-dom';
+import CartProducsCard from '../components/CartProducsCard';
 
 export default class ShoppingCart extends Component {
   state = {
