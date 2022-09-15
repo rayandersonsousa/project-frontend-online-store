@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import SearchProducts from './components/SearchProducts'; //
-
+import CheckoutProducts from './pages/CheckoutProducts';
 import ShoppingCart from './pages/ShoppingCart';
 import CategoriesBar from './components/CategoriesBar';
 import {
@@ -88,6 +88,7 @@ export default class App extends Component {
               getSavedCartItems={ this.getSavedCartItems }
             />
           </Route>
+          <Route path="/finalizar-compra"><CheckoutProducts /></Route>
           <Route path="/">
 
             <aside>
