@@ -86,7 +86,8 @@ export default class ProductDetails extends Component {
       evaluationList,
     } = this.state;
 
-    const { match: { params: { id } }, handleCartButton } = this.props;
+    const {
+      match: { params: { id } }, handleCartButton, cartProductsAmount } = this.props;
     return (
       <div>
         <span data-testid="product-detail-name">
@@ -105,7 +106,7 @@ export default class ProductDetails extends Component {
         >
           Adicionar ao carrinho
         </button>
-        <ShoppingCartButton />
+        <ShoppingCartButton cartProductsAmount={ cartProductsAmount } />
         <ProductDetailsEvaluationForm
           handleChange={ this.handleChange }
           emailInput={ emailInput }

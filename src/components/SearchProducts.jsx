@@ -7,11 +7,11 @@ import ShoppingCartButton from './ShoppingCartButton';
 export default class SearchProducts extends Component {
   render() {
     const { queryInput, queryResults, notFound, handleChange,
-      handleClick, handleCartButton } = this.props;
+      handleClick, handleCartButton, cartProductsAmount } = this.props;
 
     return (
       <div>
-        <header><ShoppingCartButton /></header>
+        <header><ShoppingCartButton cartProductsAmount={ cartProductsAmount } /></header>
         <input
           name="queryInput"
           data-testid="query-input"
@@ -73,4 +73,5 @@ SearchProducts.propTypes = {
   queryInput: PropTypes.string,
   queryResults: PropTypes.array,
   handleCartButton: PropTypes.func,
+  cartProductsAmount: PropTypes.number,
 }.isRequired;
