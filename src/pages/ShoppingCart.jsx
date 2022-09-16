@@ -17,6 +17,32 @@ export default class ShoppingCart extends Component {
     });
   }
 
+  itemsIncrease = (id) => {
+    this.setState((prev) => {
+      const prevStorage = prev.storage;
+      const prevIndex = prevStorage.findIndex((e) => e.id === id);
+      const { available_quantity: availableQuantity, cartAmout } = prevStorage[prevIndex];
+      if (cartAmout < availableQuantity) {
+        prevStorage[prevIndex].cartAmout += 1;
+        localStorage.setItem('cartItems', JSON.stringify(prevStorage));
+        return ({ storage: prevStorage });
+      }
+    });
+  };
+
+  itemsDecrease = (id) => {
+    this.setState((prev) => {
+      const prevStorage = prev.storage;
+      const prevIndex = prevStorage.findIndex((e) => e.id === id);
+      const { cartAmout } = prevStorage[prevIndex];
+      if (cartAmout >= 2) {
+        prevStorage[prevIndex].cartAmout -= 1;
+        localStorage.setItem('cartItems', JSON.stringify(prevStorage));
+        return ({ storage: prevStorage });
+      }
+    });
+  };
+
   removeItem = (id) => {
     const { storage } = this.state;
     const list = storage.filter((e) => e.id !== id);
@@ -42,7 +68,10 @@ export default class ShoppingCart extends Component {
               title={ e.title }
               price={ e.price }
               thumbnail={ e.thumbnail }
+              amount={ e.cartAmout }
               removeItem={ this.removeItem }
+              itemsIncrease={ this.itemsIncrease }
+              itemsDecrease={ this.itemsDecrease }
             />))}
         <Link to="/finalizar-compra">
           <button type="button" data-testid="checkout-products">Finalizar Compra</button>

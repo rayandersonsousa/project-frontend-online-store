@@ -6,6 +6,7 @@ export default class ShoppingCartButton extends Component {
     return (
       <nav>
         <Link to="/carrinho" data-testid="shopping-cart-button">Carrinho</Link>
+        <span data-testid="shopping-cart-size">10</span>
       </nav>
     );
   }
