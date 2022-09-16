@@ -26,11 +26,6 @@ export default class App extends Component {
     const lastCartProducts = this.getSavedCartItems();
     const lcp = JSON.parse(lastCartProducts) || [];
     this.setState({ cartProducts: lcp });
-    // const save = this.getSavedCartItems();
-    // const saved = JSON.parse(save) || [];
-    // this.setState({
-    //   storage: saved,
-    // });
   }
 
   handleChange = ({ target: { name, value } }) => {
