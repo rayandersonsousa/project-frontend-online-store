@@ -19,13 +19,16 @@ export default class App extends Component {
     queryResults: [],
     notFound: false,
     cartProducts: [],
+    cartProductsAmount: 0,
   };
 
   componentDidMount() {
     this.getAllCategories();
     const lastCartProducts = this.getSavedCartItems();
     const lcp = JSON.parse(lastCartProducts) || [];
-    this.setState({ cartProducts: lcp });
+    const amount = lcp.reduce(((a, e) => e.cartAmout + a), 0);
+    console.log(`retorno esperado ${amount}`);
+    this.setState({ cartProducts: lcp, cartProductsAmount: amount });
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -69,6 +72,8 @@ export default class App extends Component {
   };
 
   saveLocalStorage = (list) => {
+    const amount = list.reduce(((a, e) => e.cartAmout + a), 0);
+    this.setState({ cartProductsAmount: amount });
     localStorage.setItem('cartItems', JSON.stringify(list));
   };
 
@@ -76,7 +81,7 @@ export default class App extends Component {
 
   render() {
     const { categories, queryInput, queryResults,
-      notFound } = this.state;
+      notFound, cartProductsAmount } = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -86,6 +91,7 @@ export default class App extends Component {
               <ProductDetails
                 { ...props }
                 handleCartButton={ this.handleCartButton }
+                cartProductsAmount={ cartProductsAmount }
               />) }
           />
           <Route path="/carrinho">
@@ -119,6 +125,7 @@ export default class App extends Component {
               handleChange={ this.handleChange }
               handleClick={ this.handleClick }
               handleCartButton={ this.handleCartButton }
+              cartProductsAmount={ cartProductsAmount }
             />
           </Route>
         </Switch>
