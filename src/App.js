@@ -23,11 +23,9 @@ export default class App extends Component {
 
   componentDidMount() {
     this.getAllCategories();
-    // const save = this.getSavedCartItems();
-    // const saved = JSON.parse(save) || [];
-    // this.setState({
-    //   storage: saved,
-    // });
+    const lastCartProducts = this.getSavedCartItems();
+    const lcp = JSON.parse(lastCartProducts) || [];
+    this.setState({ cartProducts: lcp });
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -58,7 +56,15 @@ export default class App extends Component {
     const { queryResults, cartProducts } = this.state;
     const selectProduct = queryResults.find((e) => e.id === id);
     this.setState((prevState) => {
-      prevState.cartProducts.push(selectProduct);
+      const prevList = prevState.cartProducts;
+      const prevItem = prevList.find((e) => e.id === selectProduct.id);
+      if (prevItem) {
+        prevItem.cartAmout += 1;
+      } else {
+        selectProduct.cartAmout = 1;
+        prevState.cartProducts.push(selectProduct);
+      }
+      // prevState.cartProducts.push(selectProduct);
     }, () => this.saveLocalStorage(cartProducts));
   };
 

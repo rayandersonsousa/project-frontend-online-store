@@ -6,7 +6,8 @@ export default class ProductCheckoutDetails extends Component {
 
   componentDidMount() {
     const { id } = this.props;
-    const amount = Number(localStorage.getItem(id));
+    const amount = JSON.parse(localStorage.getItem('cartItems'))
+      .find((e) => e.id === id).cartAmout;
     this.setState({ amount: amount || 1 });
   }
 

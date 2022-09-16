@@ -2,36 +2,38 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class CartProducsCard extends Component {
-  state = {
-    amount: 1,
-  };
+  // itemsIncrease = () => {
+  //   const { id, amount, quantity } = this.props;
+  //   const savedList = JSON.parse(localStorage.getItem('cartItems'));
+  //   const savedIndex = savedList.findIndex((e) => e.id === id);
+  //   if (amount < quantity) {
+  //     savedList[savedIndex].cartAmout += 1;
+  //     localStorage.setItem('cartItems', JSON.stringify(savedList));
+  //     window.location.reload(false);
+  //   }
+  // };
 
-  componentDidMount() {
-    const { id } = this.props;
-    this.setState({ amount: Number(localStorage.getItem(id)) || 1 });
-  }
-
-  itemsIncrease = () => {
-    const { id, quantity } = this.props;
-    const { amount } = this.state;
-    if (amount < quantity) {
-      this.setState({ amount: amount + 1 });
-      localStorage.setItem(id, amount + 1);
-    }
-  };
-
-  itemsDecrease = () => {
-    const { id } = this.props;
-    const { amount } = this.state;
-    if (amount >= 2) {
-      this.setState({ amount: amount - 1 });
-      localStorage.setItem(id, amount - 1);
-    }
-  };
+  // itemsDecrease = () => {
+  //   // const { id } = this.props;
+  //   const { amount } = this.props;
+  //   // if (amount >= 2) {
+  //   //   this.setState({ amount: amount - 1 });
+  //   //   // localStorage.setItem(id, amount - 1);
+  //   // }
+  // };
 
   render() {
-    const { amount } = this.state;
-    const { title, price, thumbnail, removeItem, id } = this.props;
+    const {
+      title,
+      price,
+      thumbnail,
+      removeItem,
+      id,
+      amount,
+      itemsIncrease,
+      itemsDecrease,
+    } = this.props;
+
     return (
       <div>
         <button
@@ -48,7 +50,7 @@ export default class CartProducsCard extends Component {
           <button
             type="submit"
             data-testid="product-increase-quantity"
-            onClick={ this.itemsIncrease }
+            onClick={ () => itemsIncrease(id) }
           >
             +
           </button>
@@ -56,7 +58,7 @@ export default class CartProducsCard extends Component {
           <button
             type="submit"
             data-testid="product-decrease-quantity"
-            onClick={ this.itemsDecrease }
+            onClick={ () => itemsDecrease(id) }
           >
             -
           </button>
