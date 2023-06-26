@@ -30,6 +30,8 @@ Nesta aplicação é possível:
 - JavaScript
 - HTML
 - CSS
+- Kanban/Trello
+- Metodologias Ágeis
 
 ## Skills aplicadas
 
